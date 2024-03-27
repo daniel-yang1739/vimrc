@@ -8,7 +8,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 " Plugin 'VundleVim/Vundle.vim'
 
-" ==== Plugins START
+" S---------------------------------------
+" |             Plugin START             |
+" S---------------------------------------
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'ctrlpvim/ctrlp.vim'  " Contrl-P
 Plugin 'vim-airline/vim-airline'  " status bar
@@ -32,8 +34,7 @@ Plugin 'rbong/vim-flog' " git branch map
 Plugin 'terryma/vim-multiple-cursors' " multiple cursor
 Plugin 'preservim/nerdcommenter' " vim commenter
 Plugin 'easymotion/vim-easymotion' " vim easymotion
-" ==== Plugins END
-"
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -48,15 +49,24 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+" E---------------------------------------
+" |              Plugin END              |
+" E---------------------------------------
 
-" ==== Custom Functions START
+" S---------------------------------------
+" |        Custom Functions START        |
+" S---------------------------------------
 " Converts unicode escaped strings to unicode
 function! UnicodeUnescape()
   :%s#\\u[0-9a-f]*#\=eval('"'.submatch(0).'"')#g
 endfunction
-" ==== Custom Functions END
+" E---------------------------------------
+" |        Custom Functions END          |
+" E---------------------------------------
 
-" === Configs START
+" S---------------------------------------
+" |            Configs START             |
+" S---------------------------------------
 syntax on
 colorscheme jellybeans
 
@@ -90,12 +100,32 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l -g ""'
 endif
 
-" remap leader
-let mapleader=","
+" === KEYMAPS START ===
+let mapleader="," " remap leader
+imap jk <Esc>
 
-" Fast direcotry search
+" --- prev tab or next tab ---
+map <S-H> gT
+map <S-L> gt
+map <C-t><C-t> :tabnew<CR>
+map <C-t><C-w> :tabclose<CR>
+
+" --- splits ---
+nmap <leader>sv <C-w>v
+nmap <leader>sh <C-w>s
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+
+" --- set paste ---
+map <leader>p :set paste<CR>
+map <leader>np :set nopaste<CR>
+
+" --- Fast direcotry search ---
 nmap <leader>apy :Ag --python "<c-r><c-w>"
 nmap <leader>a :Ag "<c-r><c-w>"
+" === KEYMAPS END ===
 
 " Highlight the occurance of current word, use following command to select color
 " :so $VIMRUNTIME/syntax/hitest.vim
@@ -137,3 +167,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " set easymotion
 let g:EasyMotion_do_mapping = 0
 map <leader>f <Plug>(easymotion-bd-f)
+" E---------------------------------------
+" |            Configs END               |
+" E---------------------------------------
