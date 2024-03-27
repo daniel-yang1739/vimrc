@@ -18,23 +18,20 @@ Plugin 'nathanaelkane/vim-indent-guides'  " align guide
 Plugin 'docunext/closetag.vim'  " auto close html tag
     autocmd FileType html,htmldjango let b:closetag_html_style=1
     autocmd FileType html,xhtml,xml,htmldjango source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
-Plugin 'eslint/eslint' " eslint
 
-" Plugin 'w0rp/ale'  " Syntax linter
+Plugin 'eslint/eslint' " eslint
 Plugin 'dense-analysis/ale'
-" Plugin 'pugjs/pug-lint'  " default pug linter for ALE
-" Plugin 'hynek/vim-python-pep8-indent'  " Python indent
+ "Plugin 'w0rp/ale'  " Syntax linter
 Plugin 'digitaltoad/vim-pug'  " pug
 Plugin 'sheerun/vim-polyglot'  " Syntax highlighter
-Plugin 'preservim/nerdtree'  " NERDTree
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'airblade/vim-gitgutter'  " gitgutter
-" Plugin 'jiangmiao/auto-pairs'  " autopairs
-" Plugin 'neoclide/coc.nvim'  " autocomplete
 
-" git branch map
-Plugin 'tpope/vim-fugitive'
-Plugin 'rbong/vim-flog'
+Plugin 'airblade/vim-gitgutter'  " gitgutter
+Plugin 'tpope/vim-fugitive' " git branch map
+Plugin 'rbong/vim-flog' " git branch map
+
+Plugin 'terryma/vim-multiple-cursors' " multiple cursor
+Plugin 'preservim/nerdcommenter' " vim commenter
+Plugin 'easymotion/vim-easymotion' " vim easymotion
 " ==== Plugins END
 "
 " All of your Plugins must be added before the following line
@@ -116,19 +113,9 @@ set softtabstop=2
 set tabstop=2
 set shiftwidth=2
 
-" ctags
-set tags=tags " for ctags
-set autochdir " for ctags
-
 " display line number
 " set nu " display line number
 set rnu " display related line number
-
-" set NERDTree
-" nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-" nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
 
 " set gitgutter color
 highlight GitGutterAdd    ctermfg=green
@@ -143,10 +130,10 @@ let g:ale_linters = {
     \ 'html': [],
     \ }
 
-" customize parentheses
-au FileType html let b:AutoPairs = AutoPairsDefine({'<!--': '-->'})
-
 " auto-complete shortcut setup
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" set easymotion
+let g:EasyMotion_do_mapping = 0
+map <leader>f <Plug>(easymotion-bd-f)
